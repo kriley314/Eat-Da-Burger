@@ -17,23 +17,25 @@ console.log( "Trying to show all burgers.." );
 });
 
 router.post( "/api/burgers", function( req, res ) {
+  console.log( "Here in router.post for: " + req.body.name );
   burger.insertOne([
-    "name"
+    "burger_name"
   ], [
     req.body.name
   ], function(result) {
-    // Send back the ID of the new quote
+    // Send back the ID of the new burger
     res.json({ id: result.insertId });
   });
 });
 
 router.put( "/api/burgers/:id", function( req, res ) {
+console.log( "Here in router.put with id: " + req.params.id );
   var condition = "id = " + req.params.id;
 
-  console.log( "condition", condition );
+  console.log( "condition" + condition + ":" + req.body.devoured );
 
   burger.updateOne({
-    devoured: req.body.devoured
+    devoured: true
   }, condition, function( result ) {
     if ( result.changedRows == 0 ) {
       // If no rows were changed, then the ID must not exist, so 404
