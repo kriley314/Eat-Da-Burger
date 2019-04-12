@@ -17,7 +17,7 @@ console.log( "Here in burger.js insertOne: " + cols + ":" + vals );
   },
   updateOne: function( objColVals, condition, cb ) {
 console.log( "Here in burger.js updateOne: " + objColVals + ":" + condition );
-        orm.update( "burgers", objColVals, condition, function( res ) {
+        orm.updateOne( "burgers", objColVals, condition, function( res ) {
       cb( res );
     });
   }
