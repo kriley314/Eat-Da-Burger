@@ -1,38 +1,38 @@
-<h1>Burgers!</h1>
-<h2>Burgers we haven't eaten yet!</h2>
+<div id="burgers" style="background-image: ../public/assets/img/borderburger.png">
+    <h1>Burgers!</h1>
+    <h2>Burgers we haven't eaten yet!</h2>
 
-<ul>
-    {{#each burgers}}
-        {{#unless this.devoured}}
-        <li>
-            {{this.burger_name}}
+    <ul>
+        {{#each burgers}}
+            {{#unless this.devoured}}
+            <li>
+                <form action="/api/burgers/{{this.id}}" method="POST">
+                    {{this.burger_name}}         <button type="submit">DEVOUR IT!</button>
+                </form>
+            </li>
+            {{/unless}}
+        {{/each}}
+    </ul>
 
-            <form action="/api/burgers/{{this.id}}" method="POST">
-                <button type="submit">DEVOUR IT!</button>
-            </form>
-        </li>
-        {{/unless}}
-    {{/each}}
-</ul>
+    <h2>Burgers that have been DEVOURED!!</h2>
 
-<h2>Burgers that have been DEVOURED!!</h2>
+    <ul>
+        {{#each burgers}}
+            {{#if this.devoured}}
+            <li>
+                {{this.burger_name}}
+            </li>
+            {{/if}}
+        {{/each}}
+    </ul>
 
-<ul>
-    {{#each burgers}}
-        {{#if this.devoured}}
-        <li>
-            {{this.burger_name}}
-        </li>
-        {{/if}}
-    {{/each}}
-</ul>
+    <h2>Add a Burger</h2>
+    <form action="/api/burgers" method="POST">
+        <div class="form-group">
+            <label for="ca">Burger Name:</label>
+            <input type="text" id="ca" name="name">
+        </div>
 
-<h2>Add a Burger</h2>
-<form action="/api/burgers" method="POST">
-    <div class="form-group">
-        <label for="ca">Burger Name:</label>
-        <input type="text" id="ca" name="name">
-    </div>
-
-    <button type="submit">Add Burger</button>
-</form>
+        <button type="submit">Add Burger</button>
+    </form>
+</div>
